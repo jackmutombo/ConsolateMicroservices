@@ -1,10 +1,10 @@
-﻿using Catalog.API.Entities;
-using Catalog.API.Repositories;
-using Microsoft.AspNetCore.Mvc;
-using System.Net;
-
-namespace Catalog.API.Controllers
+﻿namespace Catalog.API.Controllers
 {
+  using Catalog.API.Entities;
+  using Catalog.API.Repositories;
+  using Microsoft.AspNetCore.Mvc;
+  using System.Net;
+
   [ApiController]
   [Route("api/v1/[controller]")]
   public class CatalogController : ControllerBase
