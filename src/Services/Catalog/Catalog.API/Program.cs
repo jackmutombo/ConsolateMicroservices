@@ -1,4 +1,5 @@
 using Catalog.API.Data;
+using Catalog.API.Middleware;
 using Catalog.API.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,17 +12,26 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<ICatalogContext, CatalogContext>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
+//builder.Services.AddCors();
 
 var app = builder.Build();
+
+app.UseMiddleware<ExceptionMiddlerware>();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
+  
   app.UseSwagger();
   app.UseSwaggerUI();
 }
 
 //app.UseHttpsRedirection();
+
+//app.UseCors(opt =>
+//{
+//  opt.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:3000", "http://localhost:3001");
+//});
 
 app.UseAuthorization();
 

@@ -45,6 +45,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebApps", "WebApps", "{72BD
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspnetRunBasics", "WebApps\AspnetRunBasics\AspnetRunBasics.csproj", "{FFDDB9D6-247F-4511-A430-2916850C9E7F}"
 EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "ReactClient", "WebApps\ReactClient\ReactClient.esproj", "{E28FDB27-C115-467B-AAFF-18D72EA292B8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -103,6 +105,12 @@ Global
 		{FFDDB9D6-247F-4511-A430-2916850C9E7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FFDDB9D6-247F-4511-A430-2916850C9E7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FFDDB9D6-247F-4511-A430-2916850C9E7F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E28FDB27-C115-467B-AAFF-18D72EA292B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E28FDB27-C115-467B-AAFF-18D72EA292B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E28FDB27-C115-467B-AAFF-18D72EA292B8}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{E28FDB27-C115-467B-AAFF-18D72EA292B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E28FDB27-C115-467B-AAFF-18D72EA292B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E28FDB27-C115-467B-AAFF-18D72EA292B8}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -124,6 +132,7 @@ Global
 		{BAAA2E49-B57D-4290-9622-03E0A252403C} = {9F49109A-8F00-4DF5-AFAD-87FF62AC0C56}
 		{218EF0B3-AB1A-4802-83A4-CBC5514F0C9B} = {9F49109A-8F00-4DF5-AFAD-87FF62AC0C56}
 		{FFDDB9D6-247F-4511-A430-2916850C9E7F} = {72BDE18F-0D9A-490E-AE1A-8D951B625F22}
+		{E28FDB27-C115-467B-AAFF-18D72EA292B8} = {72BDE18F-0D9A-490E-AE1A-8D951B625F22}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FD527870-E476-4E85-8B17-0644BCB401D6}

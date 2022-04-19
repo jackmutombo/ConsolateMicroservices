@@ -17,7 +17,8 @@ public class Product
   public string? Description { get; set; }
   public string? ImageFile { get; set; }
   public long Price { get; set; }
-  public int QunatityInStock { get; set; }
+  public string Currency { get; set; }
+  public int QuantityInStock { get; set; }
   public string? Brand { get; set; }
   public string? Type { get; set; }
   public DateTime CreatedDate { get; set; } = DateTime.Now;

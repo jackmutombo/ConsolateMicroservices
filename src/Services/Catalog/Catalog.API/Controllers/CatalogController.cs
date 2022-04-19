@@ -4,10 +4,7 @@
   using Catalog.API.Repositories;
   using Microsoft.AspNetCore.Mvc;
   using System.Net;
-
-  [ApiController]
-  [Route("api/v1/[controller]")]
-  public class CatalogController : ControllerBase
+  public class CatalogController : BaseApiController
   {
     private readonly IProductRepository _repository;
     private readonly ILogger<CatalogController> _logger;

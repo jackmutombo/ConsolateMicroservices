@@ -41,6 +41,75 @@
       "UpstreamPathTemplate": "/Catalog/GetProductByCategory/{category}",
       "UpstreamHttpMethod": [ "GET" ]
     },
+
+    //buggy API
+    {
+      "DownstreamPathTemplate": "/api/v1/Buggy/bad-request",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "catalog.api",
+          "Port": "80"
+        }
+      ],
+      "UpstreamPathTemplate": "/Buggy/bad-resquest",
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT" ],
+      //"FileCacheOptions": { "TtlSeconds": 100 },
+      "RateLimitOptions": {
+        "ClientWhitelist": []
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/v1/Buggy/unauthorised",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "catalog.api",
+          "Port": "80"
+        }
+      ],
+      "UpstreamPathTemplate": "/Buggy/unauthorised",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/v1/Buggy/not-found",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "catalog.api",
+          "Port": "80"
+        }
+      ],
+      "UpstreamPathTemplate": "/Buggy/not-found",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+
+    {
+      "DownstreamPathTemplate": "/api/v1/Buggy/server-error",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "catalog.api",
+          "Port": "80"
+        }
+      ],
+      "UpstreamPathTemplate": "/Buggy/server-error",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+
+    {
+      "DownstreamPathTemplate": "/api/v1/Buggy/validation-error",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "catalog.api",
+          "Port": "80"
+        }
+      ],
+      "UpstreamPathTemplate": "/Buggy/validation-error",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+
     //Basket API
     {
       "DownstreamPathTemplate": "/api/v1/Basket/{userName}",

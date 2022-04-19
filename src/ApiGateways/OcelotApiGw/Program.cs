@@ -11,12 +11,19 @@ builder.Host.ConfigureLogging((hostingContext, loggingbuilder) =>
   loggingbuilder.AddConsole();
   loggingbuilder.AddDebug();
 });
+builder.Services.AddCors();
 
 builder.Services.AddOcelot()
   .AddCacheManager(settings => settings.WithDictionaryHandle());
 var app = builder.Build();
 
+app.UseCors(opt =>
+{
+  opt.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:3000", "http://localhost:3001");
+});
+
 await app.UseOcelot();
+
 
 app.MapGet("/", () => "Hello World!");
 
