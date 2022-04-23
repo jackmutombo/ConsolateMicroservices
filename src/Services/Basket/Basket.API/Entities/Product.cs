@@ -3,7 +3,7 @@
   public class Product
   {
     public int Quantity { get; set; } = 1;
-    public string Color { get; set; }
+    public string Color { get; set; } = string.Empty;
     public long Price { get; set; }
 
     // navigation properties

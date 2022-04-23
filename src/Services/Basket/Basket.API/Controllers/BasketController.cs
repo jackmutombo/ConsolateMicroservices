@@ -32,7 +32,7 @@
     public async Task<ActionResult<ShoppingCart>> GetBasket()
     {
       var basket = await RetrieveBasket();
-      if (basket == null) return NotFound();
+      if (basket == null) return BadRequest(new ProblemDetails {Title ="Product Not Found" });
       return Ok(basket ?? CreateBasket());
     }
 

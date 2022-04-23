@@ -26,8 +26,8 @@ public class Product
   public string? ModifiedBy { get; set; }
   public string? Warranty { get; set; }
   public bool IsTaxable { get; set; }
-  public ProductOption? Option { get; set; }
-  public ProductStore? Store { get; set; }
+  public ProductOption? Option { get; set; } = new();
+  public ProductStore? Store { get; set; } = new();
 
 }
 
