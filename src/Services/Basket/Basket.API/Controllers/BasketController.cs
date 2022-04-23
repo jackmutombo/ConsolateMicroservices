@@ -27,36 +27,85 @@
       _publishEndpoint = publishEndpoint ?? throw new ArgumentNullException(nameof(publishEndpoint));
     }
 
-    [HttpGet("{userName}", Name = "GetBasket")]
+    [HttpGet(Name = "GetBasket")]
     [ProducesResponseType(typeof(ShoppingCart), (int)HttpStatusCode.OK)]
-    public async Task<ActionResult<ShoppingCart>> GetBasket(string userName)
+    public async Task<ActionResult<ShoppingCart>> GetBasket()
     {
-      var basket = await _repository.GetBasket(userName); 
-      return Ok(basket?? new ShoppingCart(userName));
+      var basket = await RetrieveBasket();
+      if (basket == null) return NotFound();
+      return Ok(basket ?? CreateBasket());
     }
 
+    [Route("[action]", Name = "AddItem")]
     [HttpPost]
+    [ProducesResponseType(typeof(ShoppingCart), (int)HttpStatusCode.OK)]
+    public async Task<ActionResult<ShoppingCart>> AddItem([FromBody] Product product)
+    {
+      //get basket
+      var basket = await RetrieveBasket();
+
+      // create basket
+      if (basket == null) basket = CreateBasket();
+
+      // TODO check if product exist in the catalog 
+      //var productCatalog = getProductCatalog(product);
+      //if (productCatalog == null) return NotFound();
+
+      // add item
+      basket.AddItem(product);
+
+      // save changes
+      await updateBasketDiscountGRP(basket);
+
+     return CreatedAtRoute("GetBasket", basket);
+
+      //return BadRequest(new ProblemDetails { Title = "Problem saving item to basket" });
+    }
+
+    
+    [Route("[action]", Name = "removeItem")]
+    [HttpPost]
+    //[ProducesResponseType(typeof(void), (int)HttpStatusCode.OK)]
+    public async Task<IActionResult> RemoveItem([FromBody] Product product)
+    {
+      // get basket
+      var basket = await RetrieveBasket();
+      if (basket == null) return NotFound();
+
+      // remove item or reduce quantity
+      basket.RemoveItem(product);
+
+      // save changes
+      await updateBasketDiscountGRP(basket);
+
+      return CreatedAtRoute("GetBasket", basket);
+
+      //return BadRequest(new ProblemDetails { Title = "Problem removing item to basket" });
+    }
+
+    [HttpPost(Name ="updateBasket")]
     [ProducesResponseType(typeof(ShoppingCart), (int)HttpStatusCode.OK)]
     public async Task<ActionResult<ShoppingCart>> UpdateBasket([FromBody] ShoppingCart basket)
     {
       // TODO : communicate with Discount.Grpc ( done)
       // and calculate  latest prices of product into the shoppinf cart
 
-      // consume Discount Grpc // recomendation to use ParallelHelper
-      foreach (var item in basket.Items)
-      {
-        var coupon = await _discountGrpcService.GetDiscount(item.ProductName);
-        item.Price -= coupon.Amount;
-      }
+      var updatedBasket = await updateBasketDiscountGRP(basket);
 
-      return Ok(await _repository.UpdateBasket(basket));
+      // TODO check if the products exists? still need to make sure no bug 
+
+      return Ok(updatedBasket);
     }
 
-    [HttpDelete("{userName}", Name = "DeleteBasket")]
+
+
+    [HttpDelete(Name = "DeleteBasket")]
     [ProducesResponseType(typeof(void), (int)HttpStatusCode.OK)]
-    public async Task<IActionResult> DeleteBasket(string userName)
+    public async Task<IActionResult> DeleteBasket()
     {
-      await _repository.DeleteBasket(userName);
+      var basket = await RetrieveBasket();
+      if (basket == null) return NotFound();
+      await _repository.DeleteBasket(Request.Cookies["buyerId"]);
       return Ok();
     }
 
@@ -84,9 +133,38 @@
       await _publishEndpoint.Publish(eventMessage);
 
       // remove the basket
-      await _repository.DeleteBasket(basket.UserName);
+      await _repository.DeleteBasket(basket.BuyerId);
 
       return Accepted();
+    }
+
+    private ShoppingCart CreateBasket()
+    {
+      var buyerId = Guid.NewGuid().ToString();
+      var cookieOptions = new CookieOptions { IsEssential = true, Expires = DateTime.Now.AddDays(90) };
+      Response.Cookies.Append("buyerId", buyerId, cookieOptions);
+      var basket = new ShoppingCart { BuyerId = buyerId };
+      return basket;
+    }
+
+    private async Task<ShoppingCart> RetrieveBasket()
+    {
+      string buyerId = Request.Cookies["buyerId"];
+      if (string.IsNullOrEmpty(buyerId)) return null;
+      var basket = await _repository.GetBasket(buyerId);
+      return basket;
+    }
+
+    private async Task<ShoppingCart> updateBasketDiscountGRP(ShoppingCart basket)
+    {
+      // consume Discount Grpc // recomendation to use ParallelHelper
+      foreach (var item in basket.Items)
+      {
+        var coupon = await _discountGrpcService.GetDiscount(item.ProductName);
+        item.Price -= coupon.Amount;
+      }
+
+      return await _repository.UpdateBasket(basket);
     }
   }
 }

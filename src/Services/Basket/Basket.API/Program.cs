@@ -1,4 +1,5 @@
 using Basket.API.GrpcServices;
+using Basket.API.Middleware;
 using Basket.API.Repositories;
 using Discount.Grpc.Protos;
 using MassTransit;
@@ -37,7 +38,11 @@ builder.Services.AddMassTransit(config =>
 });
 builder.Services.AddMassTransitHostedService();
 
+builder.Services.AddCors();
+
 var app = builder.Build();
+
+app.UseMiddleware<ExceptionMiddlerware>();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -45,6 +50,10 @@ if (app.Environment.IsDevelopment())
   app.UseSwagger();
   app.UseSwaggerUI();
 }
+app.UseCors(opt =>
+{
+  opt.AllowAnyHeader().AllowAnyMethod().AllowCredentials().WithOrigins("http://localhost:3000", "http://localhost:3001");
+});
 
 app.UseAuthorization();
 
