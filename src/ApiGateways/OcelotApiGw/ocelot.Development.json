@@ -41,7 +41,18 @@
       "UpstreamPathTemplate": "/Catalog/GetProductByCategory/{category}",
       "UpstreamHttpMethod": [ "GET" ]
     },
-
+    {
+      "DownstreamPathTemplate": "/api/v1/Catalog/filters",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "catalog.api",
+          "Port": "80"
+        }
+      ],
+      "UpstreamPathTemplate": "/Catalog/filters",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
     //buggy API
     {
       "DownstreamPathTemplate": "/api/v1/Buggy/bad-request",

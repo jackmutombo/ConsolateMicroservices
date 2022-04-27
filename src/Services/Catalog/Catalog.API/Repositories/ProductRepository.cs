@@ -1,5 +1,7 @@
 ﻿using Catalog.API.Data;
 using Catalog.API.Entities;
+using Catalog.API.Extensions;
+using Catalog.API.RequestHelpers;
 using MongoDB.Driver;
 
 namespace Catalog.API.Repositories
@@ -20,6 +22,30 @@ namespace Catalog.API.Repositories
                       .Find(p => true)
                       .ToListAsync();
     }
+
+    public async Task<PagedList<Product>> GetProducts(ProductParams productParams)
+    {
+
+      //var query = _context.Products.AsQueryable()
+      //    .SortByLinq(productParams.OrderBy)
+      //    .SearchTermLinq(productParams.SearchTerm)
+      //    .FilterLinq(productParams.Brands, productParams.Types);
+
+
+
+
+      var query = _context.Products.Aggregate()
+          .SortByLinq(productParams.OrderBy)
+          .SearchTermLinq(productParams.SearchTerm)
+          .FilterLinq(productParams.Brands, productParams.Types);
+
+      var products =  await PagedList<Product>.ToPagedList(query, productParams.PageNumber, productParams.PageSize);
+
+      return products;
+    }
+
+
+
     public Task<Product> GetProduct(string id)
     {
       return _context
@@ -75,5 +101,20 @@ namespace Catalog.API.Repositories
           && deleteResult.DeletedCount > 0;
     }
 
+    public Object GetFiltersCatalog()
+    {
+      var brands = _context.Products.AsQueryable().Select(e => e.Brand).Distinct().ToList();
+      var types = _context.Products.AsQueryable().Select(e => e.Type).Distinct().ToList();
+      var storeNames = _context.Products.AsQueryable().Select(e => e.Store.StoreName).Distinct().ToList();
+      var storeLocations = _context.Products.AsQueryable().Select(e => e.Store.Address).Distinct().ToList();
+      //var brands = await _context.Products.Distinct<string>("brand", FilterDefinition<Product>.Empty).ToListAsync();
+      //var types = await _context.Products.Distinct<string>("type", FilterDefinition<Product>.Empty).ToListAsync();
+      //var storeName = await _context.Products.Distinct<string>("store.storeName", FilterDefinition<Product>.Empty).ToListAsync();
+      //var storeLocation = await _context.Products.Distinct<string>("store.address", FilterDefinition<Product>.Empty).ToListAsync();
+
+      return new { brands, types, storeNames, storeLocations };
+      //return new {b};
+                     
+    }
   }
 }

@@ -17,110 +17,9 @@
     {
       return new List<Product>()
             {
-                new Product()
-                {
-                    Id = "602d2149e773f2a3990b47f5",
-                    Name = "IPhone X",
-                    Summary = "This phone is the company's biggest change to its flagship smartphone in years. It includes a borderless.",
-                    Description = "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, tenetur natus doloremque laborum quos iste ipsum rerum obcaecati impedit odit illo dolorum ab tempora nihil dicta earum fugiat. Temporibus, voluptatibus. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, tenetur natus doloremque laborum quos iste ipsum rerum obcaecati impedit odit illo dolorum ab tempora nihil dicta earum fugiat. Temporibus, voluptatibus.",
-                    ImageFile = "/images/products/product-1.png",
-                    Price = 95000L,
-                    Category = "Smart Phone",
-                    QuantityInStock = 120,
-                    Store = new ProductStore
-                    {
-                      Id = "602d2149e773f2a3990b4710",
-                      Address = "Lubumbashi",
-                      StoreName = "SmartDevice"
-                    }
-                },
-                new Product()
-                {
-                    Id = "602d2149e773f2a3990b47f6",
-                    Name = "Samsung 10",
-                    Summary = "This phone is the company's biggest change to its flagship smartphone in years. It includes a borderless.",
-                    Description = "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, tenetur natus doloremque laborum quos iste ipsum rerum obcaecati impedit odit illo dolorum ab tempora nihil dicta earum fugiat. Temporibus, voluptatibus. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, tenetur natus doloremque laborum quos iste ipsum rerum obcaecati impedit odit illo dolorum ab tempora nihil dicta earum fugiat. Temporibus, voluptatibus.",
-                    ImageFile = "/images/products/product-2.png",
-                    Price = 84000L,
-                    Category = "Smart Phone",
-                    QuantityInStock = 120,
-                    Store = new ProductStore
-                    {
-                      Id = "602d2149e773f2a3990b4710",
-                      Address = "Lubumbashi",
-                      StoreName = "SmartDevice"
-                    }
-                },
-                new Product()
-                {
-                    Id = "602d2149e773f2a3990b47f7",
-                    Name = "Huawei Plus",
-                    Summary = "This phone is the company's biggest change to its flagship smartphone in years. It includes a borderless.",
-                    Description = "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, tenetur natus doloremque laborum quos iste ipsum rerum obcaecati impedit odit illo dolorum ab tempora nihil dicta earum fugiat. Temporibus, voluptatibus. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, tenetur natus doloremque laborum quos iste ipsum rerum obcaecati impedit odit illo dolorum ab tempora nihil dicta earum fugiat. Temporibus, voluptatibus.",
-                    ImageFile = "/images/products/product-3.png",
-                    Price = 65000L,
-                    Category = "White Appliances",
-                    QuantityInStock = 120,
-                    Store = new ProductStore
-                    {
-                      Id = "602d2149e773f2a3990b4710",
-                      Address = "Lubumbashi",
-                      StoreName = "SmartDevice"
-                    }
-                },
-                new Product()
-                {
-                    Id = "602d2149e773f2a3990b47f8",
-                    Name = "Xiaomi Mi 9",
-                    Summary = "This phone is the company's biggest change to its flagship smartphone in years. It includes a borderless.",
-                    Description = "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, tenetur natus doloremque laborum quos iste ipsum rerum obcaecati impedit odit illo dolorum ab tempora nihil dicta earum fugiat. Temporibus, voluptatibus. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, tenetur natus doloremque laborum quos iste ipsum rerum obcaecati impedit odit illo dolorum ab tempora nihil dicta earum fugiat. Temporibus, voluptatibus.",
-                    ImageFile = "/images/products/product-4.png",
-                    Price = 47000L,
-                    Category = "White Appliances",
-                    QuantityInStock = 120,
-                    Store = new ProductStore
-                    {
-                      Id = "602d2149e773f2a3990b4710",
-                      Address = "Lubumbashi",
-                      StoreName = "SmartDevice"
-                    }
-                },
-                new Product()
-                {
-                    Id = "602d2149e773f2a3990b47f9",
-                    Name = "HTC U11+ Plus",
-                    Summary = "This phone is the company's biggest change to its flagship smartphone in years. It includes a borderless.",
-                    Description = "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, tenetur natus doloremque laborum quos iste ipsum rerum obcaecati impedit odit illo dolorum ab tempora nihil dicta earum fugiat. Temporibus, voluptatibus. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, tenetur natus doloremque laborum quos iste ipsum rerum obcaecati impedit odit illo dolorum ab tempora nihil dicta earum fugiat. Temporibus, voluptatibus.",
-                    ImageFile = "/images/products/product-5.png",
-                    Price = 38000L,
-                    Category = "Smart Phone",
-                    QuantityInStock = 120,
-                    Store = new ProductStore
-                    {
-                      Id = "602d2149e773f2a3990b4710",
-                      Address = "Lubumbashi",
-                      StoreName = "SmartDevice"
-                    }
-                },
-                new Product()
-                {
-                    Id = "602d2149e773f2a3990b47fa",
-                    Name = "LG G7 ThinQ",
-                    Summary = "This phone is the company's biggest change to its flagship smartphone in years. It includes a borderless.",
-                    Description = "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, tenetur natus doloremque laborum quos iste ipsum rerum obcaecati impedit odit illo dolorum ab tempora nihil dicta earum fugiat. Temporibus, voluptatibus. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, tenetur natus doloremque laborum quos iste ipsum rerum obcaecati impedit odit illo dolorum ab tempora nihil dicta earum fugiat. Temporibus, voluptatibus.",
-                    ImageFile = "/images/products/product-6.png",
-                    Price = 24000L,
-                    Category = "Home Kitchen",
-                    QuantityInStock = 120,
-                    Store = new ProductStore
-                    {
-                      Id = "602d2149e773f2a3990b4710",
-                      Address = "Lubumbashi",
-                      StoreName = "SmartDevice"
-                    }
-                },
                 new Product
                 {
+                   Id = "619d2149e773f2a3990b47f5",
                     Name = "Angular Speedster Board 2000",
                     Description =
                         "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
@@ -138,6 +37,7 @@
                 },
                 new Product
                 {
+                  Id = "618d2149e773f2a3990b47f5",
                     Name = "Green Angular Board 3000",
                     Description = "Nunc viverra imperdiet enim. Fusce est. Vivamus a tellus.",
                     Price = 15000,
@@ -154,6 +54,7 @@
                 },
                 new Product
                 {
+                  Id = "617d2149e773f2a3990b47f5",
                     Name = "Core Board Speed Rush 3",
                     Description =
                         "Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend. Ut nonummy.",
@@ -171,6 +72,7 @@
                 },
                 new Product
                 {
+                  Id = "616d2149e773f2a3990b47f5",
                     Name = "Net Core Super Board",
                     Description =
                         "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci.",
@@ -188,6 +90,7 @@
                 },
                 new Product
                 {
+                  Id = "615d2149e773f2a3990b47f5",
                     Name = "React Board Super Whizzy Fast",
                     Description =
                         "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
@@ -205,6 +108,7 @@
                 },
                 new Product
                 {
+                  Id = "614d2149e773f2a3990b47f5",
                     Name = "Typescript Entry Board",
                     Description =
                         "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
@@ -222,6 +126,7 @@
                 },
                 new Product
                 {
+                  Id = "613d2149e773f2a3990b47f5",
                     Name = "Core Blue Hat",
                     Description =
                         "Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
@@ -239,6 +144,7 @@
                 },
                 new Product
                 {
+                  Id = "612d2149e773f2a3990b47f5",
                     Name = "Green React Woolen Hat",
                     Description =
                         "Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
@@ -256,6 +162,7 @@
                 },
                 new Product
                 {
+                  Id = "611d2149e773f2a3990b47f5",
                     Name = "Purple React Woolen Hat",
                     Description =
                         "Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
@@ -273,6 +180,7 @@
                 },
                 new Product
                 {
+                  Id = "610d2149e773f2a3990b47f5",
                     Name = "Blue Code Gloves",
                     Description =
                         "Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
@@ -290,6 +198,7 @@
                 },
                 new Product
                 {
+                  Id = "609d2149e773f2a3990b47f5",
                     Name = "Green Code Gloves",
                     Description =
                         "Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
@@ -307,6 +216,7 @@
                 },
                 new Product
                 {
+                   Id = "608d2149e773f2a3990b47f5",
                     Name = "Purple React Gloves",
                     Description =
                         "Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
@@ -324,6 +234,7 @@
                 },
                 new Product
                 {
+                  Id = "607d2149e773f2a3990b47f5",
                     Name = "Green React Gloves",
                     Description =
                         "Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
@@ -341,6 +252,7 @@
                 },
                 new Product
                 {
+                  Id = "606d2149e773f2a3990b47f5",
                     Name = "Redis Red Boots",
                     Description =
                         "Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend. Ut nonummy.",
@@ -358,6 +270,7 @@
                 },
                 new Product
                 {
+                    Id = "605d2149e773f2a3990b47f5",
                     Name = "Core Red Boots",
                     Description =
                         "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
@@ -375,6 +288,7 @@
                 },
                 new Product
                 {
+                    Id = "604d2149e773f2a3990b47f5",
                     Name = "Core Purple Boots",
                     Description =
                         "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci.",
@@ -392,6 +306,7 @@
                 },
                 new Product
                 {
+                    Id = "603d2149e773f2a3990b47f5",
                     Name = "Angular Purple Boots",
                     Description = "Aenean nec lorem. In porttitor. Donec laoreet nonummy augue.",
                     Price = 15000,
@@ -408,6 +323,7 @@
                 },
                 new Product
                 {
+                    Id = "620d2149e773f2a3990b47f5",
                     Name = "Angular Blue Boots",
                     Description =
                         "Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend. Ut nonummy.",
@@ -421,6 +337,120 @@
                       Id = "602d2149e773f2a3990b4711",
                       Address = "Lubumbashi",
                       StoreName = "ReStore"
+                    }
+                },
+                new Product()
+                {
+                    Id = "602d2149e773f2a3990b47f5",
+                    Name = "IPhone X",
+                    Summary = "This phone is the company's biggest change to its flagship smartphone in years. It includes a borderless.",
+                    Description = "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, tenetur natus doloremque laborum quos iste ipsum rerum obcaecati impedit odit illo dolorum ab tempora nihil dicta earum fugiat. Temporibus, voluptatibus. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, tenetur natus doloremque laborum quos iste ipsum rerum obcaecati impedit odit illo dolorum ab tempora nihil dicta earum fugiat. Temporibus, voluptatibus.",
+                    ImageFile = "/images/products/product-1.png",
+                    Price = 95000L,
+                    Brand = "Apple",
+                    Type = "Phone",
+                    Category = "Smart Phone",
+                    QuantityInStock = 120,
+                    Store = new ProductStore
+                    {
+                      Id = "602d2149e773f2a3990b4710",
+                      Address = "Lubumbashi",
+                      StoreName = "SmartDevice"
+                    }
+                },
+                new Product()
+                {
+                    Id = "602d2149e773f2a3990b47f6",
+                    Name = "Samsung 10",
+                    Summary = "This phone is the company's biggest change to its flagship smartphone in years. It includes a borderless.",
+                    Description = "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, tenetur natus doloremque laborum quos iste ipsum rerum obcaecati impedit odit illo dolorum ab tempora nihil dicta earum fugiat. Temporibus, voluptatibus. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, tenetur natus doloremque laborum quos iste ipsum rerum obcaecati impedit odit illo dolorum ab tempora nihil dicta earum fugiat. Temporibus, voluptatibus.",
+                    ImageFile = "/images/products/product-2.png",
+                    Price = 84000L,
+                    Brand = "Samsung",
+                    Type = "Phone",
+                    Category = "Smart Phone",
+                    QuantityInStock = 120,
+                    Store = new ProductStore
+                    {
+                      Id = "602d2149e773f2a3990b4710",
+                      Address = "Lubumbashi",
+                      StoreName = "SmartDevice"
+                    }
+                },
+                new Product()
+                {
+                    Id = "602d2149e773f2a3990b47f7",
+                    Name = "Huawei Plus",
+                    Summary = "This phone is the company's biggest change to its flagship smartphone in years. It includes a borderless.",
+                    Description = "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, tenetur natus doloremque laborum quos iste ipsum rerum obcaecati impedit odit illo dolorum ab tempora nihil dicta earum fugiat. Temporibus, voluptatibus. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, tenetur natus doloremque laborum quos iste ipsum rerum obcaecati impedit odit illo dolorum ab tempora nihil dicta earum fugiat. Temporibus, voluptatibus.",
+                    ImageFile = "/images/products/product-3.png",
+                    Price = 65000L,
+                    Brand = "Huawei",
+                    Type = "Phone",
+                    Category = "White Appliances",
+                    QuantityInStock = 120,
+                    Store = new ProductStore
+                    {
+                      Id = "602d2149e773f2a3990b4710",
+                      Address = "Lubumbashi",
+                      StoreName = "SmartDevice"
+                    }
+                },
+                new Product()
+                {
+                    Id = "602d2149e773f2a3990b47f8",
+                    Name = "Xiaomi Mi 9",
+                    Summary = "This phone is the company's biggest change to its flagship smartphone in years. It includes a borderless.",
+                    Description = "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, tenetur natus doloremque laborum quos iste ipsum rerum obcaecati impedit odit illo dolorum ab tempora nihil dicta earum fugiat. Temporibus, voluptatibus. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, tenetur natus doloremque laborum quos iste ipsum rerum obcaecati impedit odit illo dolorum ab tempora nihil dicta earum fugiat. Temporibus, voluptatibus.",
+                    ImageFile = "/images/products/product-4.png",
+                    Price = 47000L,
+                    Brand = "Xiaomi",
+                    Type = "Phone",
+                    Category = "White Appliances",
+                    QuantityInStock = 120,
+                    Store = new ProductStore
+                    {
+                      Id = "602d2149e773f2a3990b4710",
+                      Address = "Lubumbashi",
+                      StoreName = "SmartDevice"
+                    }
+                },
+                new Product()
+                {
+                    Id = "602d2149e773f2a3990b47f9",
+                    Name = "HTC U11+ Plus",
+                    Summary = "This phone is the company's biggest change to its flagship smartphone in years. It includes a borderless.",
+                    Description = "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, tenetur natus doloremque laborum quos iste ipsum rerum obcaecati impedit odit illo dolorum ab tempora nihil dicta earum fugiat. Temporibus, voluptatibus. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, tenetur natus doloremque laborum quos iste ipsum rerum obcaecati impedit odit illo dolorum ab tempora nihil dicta earum fugiat. Temporibus, voluptatibus.",
+                    ImageFile = "/images/products/product-5.png",
+                    Price = 38000L,
+                    Brand = "HTC",
+                    Type = "Phone",
+                    Category = "Smart Phone",
+                    QuantityInStock = 120,
+                    Store = new ProductStore
+                    {
+                      Id = "602d2149e773f2a3990b4710",
+                      Address = "Lubumbashi",
+                      StoreName = "SmartDevice"
+                    }
+                },
+                new Product()
+                {
+                    Id = "602d2149e773f2a3990b47fa",
+                    Name = "LG G7 ThinQ",
+                    Summary = "This phone is the company's biggest change to its flagship smartphone in years. It includes a borderless.",
+                    Description = "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, tenetur natus doloremque laborum quos iste ipsum rerum obcaecati impedit odit illo dolorum ab tempora nihil dicta earum fugiat. Temporibus, voluptatibus. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, tenetur natus doloremque laborum quos iste ipsum rerum obcaecati impedit odit illo dolorum ab tempora nihil dicta earum fugiat. Temporibus, voluptatibus.",
+                    ImageFile = "/images/products/product-6.png",
+                    Price = 24000L,
+                    Brand = "LG",
+                    Type = "Phone",
+                    Category = "Home Kitchen",
+                    QuantityInStock = 120,
+                    Store = new ProductStore
+                    {
+                      Id = "602d2149e773f2a3990b4710",
+                      Address = "Lubumbashi",
+                      StoreName = "SmartDevice"
                     }
                 },
             };

@@ -1,9 +1,13 @@
 ﻿namespace Catalog.API.Controllers
 {
   using Catalog.API.Entities;
+  using Catalog.API.Extensions;
   using Catalog.API.Repositories;
+  using Catalog.API.RequestHelpers;
   using Microsoft.AspNetCore.Mvc;
   using System.Net;
+  using System.Text.Json;
+
   public class CatalogController : BaseApiController
   {
     private readonly IProductRepository _repository;
@@ -16,10 +20,11 @@
     }
 
     [HttpGet]
-    [ProducesResponseType(typeof(IEnumerable<Product>), (int)HttpStatusCode.OK)]
-    public async Task<ActionResult<IEnumerable<Product>>> GetProducts()
+    [ProducesResponseType(typeof(PagedList<Product>), (int)HttpStatusCode.OK)]
+    public async Task<ActionResult<PagedList<Product>>> GetProducts([FromQuery]ProductParams productParams)
     {
-      var products = await _repository.GetProducts();
+      var products = await _repository.GetProducts(productParams);
+      Response.AddPaginationHeader(products.MetaData);
       return Ok(products);
     }
 
@@ -67,6 +72,12 @@
     public async Task<IActionResult> DeleteProductById(string id)
     {
       return Ok(await _repository.DeleteProduct(id));
+    }
+
+    [HttpGet("filters")]
+    public  IActionResult GetFilters()
+    {
+      return Ok( _repository.GetFiltersCatalog());
     }
   }
 }
