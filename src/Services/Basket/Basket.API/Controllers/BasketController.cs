@@ -31,10 +31,10 @@
     [ProducesResponseType(typeof(ShoppingCart), (int)HttpStatusCode.OK)]
     public async Task<ActionResult<ShoppingCart>> GetBasket()
     {
-      var basket = await RetrieveBasket();
-      //if (basket == null) return BadRequest(new ProblemDetails {Title ="Product Not Found" });
+      var basket = await RetrieveBasket(GetBuyerId());
+      if (basket == null) return BadRequest(new ProblemDetails { Title = "Product Not Found" });
 
-      return Ok(basket ?? CreateBasket());
+      return Ok(basket ?? CreateBasket()); 
     }
 
     [Route("[action]", Name = "AddItem")]
@@ -43,7 +43,7 @@
     public async Task<ActionResult<ShoppingCart>> AddItem([FromBody] Product product)
     {
       //get basket
-      var basket = await RetrieveBasket();
+      var basket = await RetrieveBasket(GetBuyerId());
 
       // create basket
       if (basket == null) basket = CreateBasket();
@@ -70,7 +70,7 @@
     public async Task<IActionResult> RemoveItem([FromBody] Product product)
     {
       // get basket
-      var basket = await RetrieveBasket();
+      var basket = await RetrieveBasket(GetBuyerId());
       if (basket == null) return NotFound();
 
       // remove item or reduce quantity
@@ -104,7 +104,7 @@
     [ProducesResponseType(typeof(void), (int)HttpStatusCode.OK)]
     public async Task<IActionResult> DeleteBasket()
     {
-      var basket = await RetrieveBasket();
+      var basket = await RetrieveBasket(GetBuyerId());
       if (basket == null) return NotFound();
       await _repository.DeleteBasket(Request.Cookies["buyerId"]);
       return Ok();
@@ -141,19 +141,36 @@
 
     private ShoppingCart CreateBasket()
     {
-      var buyerId = Guid.NewGuid().ToString();
-      var cookieOptions = new CookieOptions { IsEssential = true, Expires = DateTime.Now.AddDays(90) };
-      Response.Cookies.Append("buyerId", buyerId, cookieOptions);
+      var buyerId = User.Identity?.Name;
+
+      if (string.IsNullOrEmpty(buyerId))
+      {
+         buyerId = Guid.NewGuid().ToString();
+         var cookieOptions = new CookieOptions { IsEssential = true, Expires = DateTime.Now.AddDays(90) };
+         Response.Cookies.Append("buyerId", buyerId, cookieOptions);
+      } 
+      
+      
       var basket = new ShoppingCart { BuyerId = buyerId };
       return basket;
     }
 
-    private async Task<ShoppingCart> RetrieveBasket()
+    private async Task<ShoppingCart> RetrieveBasket(string buyerId)
     {
-      string buyerId = Request.Cookies["buyerId"];
+      if (string.IsNullOrEmpty(buyerId))
+      {
+        Response.Cookies.Delete("buyerId");
+        return null;
+      }
+      // = Request.Cookies["buyerId"];
       if (string.IsNullOrEmpty(buyerId)) return null;
       var basket = await _repository.GetBasket(buyerId);
       return basket;
+    }
+
+    private string GetBuyerId()
+    {
+      return User.Identity?.Name ?? Request.Cookies["buyerId"];
     }
 
     private async Task<ShoppingCart> updateBasketDiscountGRP(ShoppingCart basket)

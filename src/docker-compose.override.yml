@@ -36,6 +36,15 @@ services:
     ports:
       - "1433:1433"
 
+  accountdb:
+    container_name: accountdb
+    environment:
+      SA_PASSWORD: "Jack1234056789"
+      ACCEPT_EULA: "Y"
+    restart: always
+    ports:
+      - "5434:1433"
+
   rabbitmq:
     container_name: rabbitmq
     restart: always
@@ -129,6 +138,7 @@ services:
       - basket.api
       - discount.api
       - ordering.api
+      - accounts
     ports:
       - "8010:80"
 
@@ -159,3 +169,13 @@ services:
       - discount.api
     ports:
       - "8006:80"
+
+  accounts:
+    container_name: accounts
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "ConnectionStrings:AccountConnectionString=Server=accountdb;Database=AccountDb;User Id=sa;Password=Jack1234056789"
+    depends_on:
+      - accountdb
+    ports:
+      - "8007:80"

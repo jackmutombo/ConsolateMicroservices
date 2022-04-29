@@ -53,6 +53,54 @@
       "UpstreamPathTemplate": "/Catalog/filters",
       "UpstreamHttpMethod": [ "GET" ]
     },
+
+    // Account API
+    {
+      "DownstreamPathTemplate": "/api/v1/Account/login",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "accounts",
+          "Port": "80"
+        }
+      ],
+      "UpstreamPathTemplate": "/Account/login",
+      "UpstreamHttpMethod": [ "POST" ],
+      "RateLimitOptions": {
+        "ClientWhitelist": []
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/v1/Account/register",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "accounts",
+          "Port": "80"
+        }
+      ],
+      "UpstreamPathTemplate": "/Account/register",
+      "UpstreamHttpMethod": [ "POST" ],
+      "RateLimitOptions": {
+        "ClientWhitelist": []
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/v1/Account/currentUser",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "accounts",
+          "Port": "80"
+        }
+      ],
+      "UpstreamPathTemplate": "/Account/currentUser",
+      "UpstreamHttpMethod": [ "GET" ],
+      "RateLimitOptions": {
+        "ClientWhitelist": []
+      }
+    },
+
     //buggy API
     {
       "DownstreamPathTemplate": "/api/v1/Buggy/bad-request",
