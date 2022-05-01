@@ -9,6 +9,13 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
+
+builder.Services.AddAuthentication("Bearer")
+  .AddIdentityServerAuthentication("Bearer", options =>
+  {
+    options.Authority = "http://localhost:5007";
+    options.ApiName = "BasketAPI";
+  });
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -55,6 +62,7 @@ app.UseCors(opt =>
   opt.AllowAnyHeader().AllowAnyMethod().AllowCredentials().WithOrigins("http://localhost:3000", "http://localhost:3001");
 });
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

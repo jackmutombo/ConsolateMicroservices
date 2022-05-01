@@ -8,7 +8,7 @@ namespace Accounts.Data
 {
   public class StoreContext : IdentityDbContext<User>
   {
-    public StoreContext(DbContextOptions options) : base(options)
+    public StoreContext(DbContextOptions<StoreContext> options) : base(options)
     {
     }
 
