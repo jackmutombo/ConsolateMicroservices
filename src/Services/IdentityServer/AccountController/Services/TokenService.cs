@@ -37,10 +37,10 @@ namespace Accounts.Services
       var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512);
 
       var tokenOptions = new JwtSecurityToken(
-        issuer: null,
-        audience: null,
+        issuer: _config["JWTSettings:ValidIssuer"],
+        audience: _config["JWTSettings:ValidAudience"],
         claims: claims,
-        expires: DateTime.UtcNow.AddDays(7),
+        expires: DateTime.UtcNow.AddDays(int.Parse(_config["JWTSettings:TokenExpirationDays"])),
         signingCredentials: creds
         );
 

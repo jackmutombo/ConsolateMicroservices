@@ -90,9 +90,16 @@ services:
       - "CacheSettings:ConnectionString=basketdb:6379"
       - "GrpcSettings:DiscountUrl=http://discount.grpc"
       - "EventBusSettings:HostAddress=amqp://guest:guest@rabbitmq:5672"
+      - "JWTSettings:TokenKey=Key to generate token key la cle pour generer le tokenCle 1543"
+      - "JWTSettings:ValidAudience=http://accounts"
+      - "JWTSettings:ValidIssuer=http://accounts"
+      - "JWTSettings:TokenExpirationDays=5"
+      - "CORSSetting:ReactWebURL=http://localhost:3001"
+      - "CORSSetting:AccountsURL=http://accounts"
     depends_on:
       - basketdb
       - rabbitmq
+      - accounts
     ports:
       - "8001:80"
 
@@ -175,6 +182,12 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - "ConnectionStrings:AccountConnectionString=Server=accountdb;Database=AccountDb;User Id=sa;Password=Jack1234056789"
+      - "JWTSettings:TokenKey=Key to generate token key la cle pour generer le tokenCle 1543"
+      - "JWTSettings:ValidAudience=http://accounts"
+      - "JWTSettings:ValidIssuer=http://accounts"
+      - "JWTSettings:TokenExpirationDays=5"
+      - "CORSSetting:ReactWebURL=http://localhost:3001"
+      - "CORSSetting:BasketURL=http://basket.api"
     depends_on:
       - accountdb
     ports:

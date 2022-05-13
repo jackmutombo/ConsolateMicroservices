@@ -6,6 +6,7 @@
   using Basket.API.Repositories;
   using EventBus.Messages.Events;
   using MassTransit;
+  using Microsoft.AspNetCore.Authorization;
   using Microsoft.AspNetCore.Mvc;
   using System;
   using System.Net;
@@ -35,6 +36,33 @@
       if (basket == null) return BadRequest(new ProblemDetails { Title = "Product Not Found" });
 
       return Ok(basket ?? CreateBasket()); 
+    }
+
+    [Authorize]
+    [Route("[action]", Name = "GetLoginBasket")]
+    [HttpGet]
+    [ProducesResponseType(typeof(ShoppingCart), (int)HttpStatusCode.OK)]
+    public async Task<ActionResult<ShoppingCart>> GetLoginBasket()
+    {
+      var userBasket = await RetrieveBasket(User.Identity?.Name);
+      var anonBasket = await RetrieveBasket(Request.Cookies["buyerId"]);
+
+      if (anonBasket != null)
+      {
+        if (userBasket != null) await _repository.DeleteBasket(User.Identity?.Name);
+        anonBasket.BuyerId = User.Identity?.Name;
+        Response.Cookies.Delete("buyerId");
+        await _repository.UpdateBasket(anonBasket);
+      }
+
+      return Ok(anonBasket != null ? anonBasket: userBasket);
+    }
+
+    [Authorize]
+    [HttpGet("data")]
+    public IActionResult Test()
+    {
+      return Ok();
     }
 
     [Route("[action]", Name = "AddItem")]

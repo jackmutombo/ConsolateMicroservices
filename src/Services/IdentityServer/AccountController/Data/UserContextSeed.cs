@@ -3,7 +3,6 @@
   using Accounts.Entities;
   using Microsoft.AspNetCore.Identity;
   using Microsoft.Extensions.Logging;
-  using System.Collections.Generic;
   using System.Linq;
   using System.Threading.Tasks;
 

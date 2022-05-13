@@ -1,6 +1,7 @@
 using Accounts.Data;
 using Accounts.Entities;
 using Accounts.Extensions;
+using Accounts.Helpers;
 using Accounts.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
@@ -10,6 +11,7 @@ using Microsoft.OpenApi.Models;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
+ConfigurationManager configuration = builder.Configuration;
 
 // Add services to the container.
 
@@ -47,7 +49,7 @@ builder.Services.AddSwaggerGen( c =>
 });
 
 builder.Services.AddDbContext<StoreContext>(options =>
-          options.UseSqlServer(builder.Configuration.GetConnectionString("AccountConnectionString")));
+          options.UseSqlServer(configuration.GetConnectionString("AccountConnectionString")));
 
 builder.Services.AddIdentityCore<User>(opt =>
 {
@@ -63,17 +65,30 @@ builder.Services.AddIdentityCore<User>(opt =>
   .AddEntityFrameworkStores<StoreContext>();
 
 // TODO check this is supposer to be herer
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+builder.Services.AddAuthentication(option =>
+{
+  option.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+  option.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+  option.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+})
   .AddJwtBearer(opt =>
   {
+    opt.SaveToken = true;
+    opt.RequireHttpsMetadata = false;
+
+    AuthenticationConfiguration authenticationConfiguration = new AuthenticationConfiguration();
+    configuration.Bind("JWTSettings", authenticationConfiguration);
+
     opt.TokenValidationParameters = new TokenValidationParameters
     {
-      ValidateIssuer = false,
-      ValidateAudience = false,
+      ValidateIssuer = true,
+      ValidateAudience = true,
       ValidateLifetime = true,
+      ValidAudience = authenticationConfiguration.ValidAudience,
+      ValidIssuer = authenticationConfiguration.ValidIssuer,
       ValidateIssuerSigningKey = true,
       IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8
-          .GetBytes(builder.Configuration["JWTSettings:TokenKey"]))
+          .GetBytes(authenticationConfiguration.TokenKey))
     };
   });
 
@@ -99,7 +114,9 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseCors(opt =>
 {
-  opt.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:3000", "http://localhost:3001");
+  CORSconfiguration corsConfiguration = new CORSconfiguration();
+  configuration.Bind("CORSSetting", corsConfiguration);
+  opt.AllowAnyHeader().AllowAnyMethod().AllowCredentials().WithOrigins("http://localhost:3000", corsConfiguration.ReactWebURL, corsConfiguration.BasketURL);
 });
 
 app.UseAuthentication();
